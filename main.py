@@ -27,15 +27,21 @@ def main():
         choice = input("Nhập 1 số bất kì để thực hiện chức năng: ")
         try:
             choice == int(choice)
+            if 0 <= int(choice) < 11:
+                pass
+            else:
+                print("\n-----Bạn phải nhập vào 1 số có trong bảng trên, vui lòng thử lại-----\n")
+                input("----Nhấn Enter để tiếp tục----")
         except:
-            print("-----Bạn phải nhập vào 1 số, vui lòng thử lại-----")
-            continue
+            print("\n-----Bạn phải nhập vào 1 số có trong bảng trên, vui lòng thử lại-----\n")
+            input("----Nhấn Enter để tiếp tục----")
+            pass
+
         if choice == "0":
             print("-----Đang thoát chương trình-----")
             break
         if choice == "1":
             lisStudent = qlsv.add_Students()
-            print(lisStudent)
             qlsv.show_list_Students(lisStudent)
             input("\n----Nhấn Enter để tiếp tục----")
         if choice == "2":
@@ -82,4 +88,5 @@ def main():
             df = qlsv.show_students_DataFrame(lisStudent)
             print(df)
             input("\n----Nhấn Enter để tiếp tục----")
+
 main()
