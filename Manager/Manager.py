@@ -19,6 +19,7 @@ class ManagerStudent:
         return student
 
     def add_Students(self): #thêm sinh viên
+        self.lisStudent = []
         n = 0 # _ID
 
         while True:
@@ -251,19 +252,35 @@ class ManagerStudent:
         student.rank = str(self.rank_student(student.gpa))
         return student
 
-    def Edit_info_Students(self, lisStudent, id_Student):
-        student = None
+    def choice_in_range(self):
         print("1. Tên.")
         print("2. Tuổi.")
         print("3. Giới tính.")
         print("4. Điểm toán. ")
         print("5. Điểm văn. ")
         print("6. Điểm anh. ")
-        choice = input("Bạn muốn sửa thông tin gì (1-6): ")
+        check = True
+        while check == True:
+
+            choice = input("Bạn muốn sửa thông tin gì (1-6): ")
+            try:
+                choice = int(choice)
+                if 0 < int(choice) < 7:
+                    check = False
+            except:
+                print("Bạn phải nhập vào 1 số có trong bảng trên, vui lòng thử lại!")
+
+
+        return choice
+
+    def Edit_info_Students(self, lisStudent, id_Student):
+        student = None
         check = True
         while check == True:
             for i in lisStudent:
                 if i[8] == id_Student:
+                    choice = self.choice_in_range()
+                    choice = str(choice)
                     student = i
                     index = lisStudent.index(student)
                     stu = self.Edit_info(student, choice)
